@@ -2,7 +2,11 @@ body{
     background-color: orange;
 }
 
-.age{
+.rating-box{
+    text-align: left!important;
+}
+
+.ageinput{
     margin-left: 5px;
 }
 
