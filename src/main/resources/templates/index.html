@@ -6,9 +6,9 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{css/styles.css}"/>
 </head>
-<body class="container">
-
-
+<body>
+<div th:include="navbar :: navbar"> </div>
+<div class="container">
 <h1>All your movies displayed here:</h1>
 
 <div class="row">
@@ -29,7 +29,7 @@
             </div>
             <div class="panel-body" >
                 <!--<div th:text="${movie.imdblink}"></div>-->
-                <a th:href="'movie/' + @{${movie.id}}">Movie reviews</a>
+                <a th:href="'movie/' + @{${movie.id}} + '/reviews'">Movie reviews</a>
             </div>
 
 
@@ -39,6 +39,8 @@
     <form action="/addMovie" method="get">
         <input type="submit" value="Add Movie"/>
     </form>
+
+</div>
 </div>
 </body>
 </html>

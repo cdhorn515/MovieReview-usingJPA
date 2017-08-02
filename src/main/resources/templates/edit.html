@@ -1,44 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Detail page</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
 </head>
 <body>
+<div th:include="navbar :: navbar"></div>
 
-<form action="/edit" method="post" class="form-horizontal">
+<div class="container">
+
+<form th:action="'/edit/' + ${movieId}" method="post" class="form-horizontal">
 
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">Movie Title</label>
         <div class="col-sm-10">
-            <input type="text" name="title" class="form-control" id="title" />
+            <input type="text" name="title" class="form-control" id="title" th:value="${movie.title}"/>
         </div>
     </div>
     <div class="form-group">
         <label for="genre" class="col-sm-2 control-label">Genre</label>
         <div class="col-sm-10">
-            <input type="text" name="genre" class="form-control" id="genre"/>
+            <input type="text" name="genre" class="form-control" id="genre" th:value="${movie.genre}"/>
         </div>
     </div>
     <div class="form-group">
         <label for="imdblink" class="col-sm-2 control-label">IMDB Link</label>
         <div class="col-sm-10">
-            <input type="text" name="imdblink" class="form-control" id="imdblink"/>
+            <input type="text" name="imdblink" class="form-control" id="imdblink" th:value="${movie.imdblink}"/>
         </div>
     </div>
     <div class="form-group">
         <label for="releasedate" class="col-sm-2 control-label">Date released</label>
         <div class="col-sm-10">
-            <input type="date" name="releasedate" class="form-control" id="releasedate"/>
+            <input type="date" name="releasedate" class="form-control" id="releasedate" th:value="${movie.releasedate}"/>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Add</button>
+            <button type="submit" class="btn btn-default">Update</button>
         </div>
     </div>
 </form>
-
+</div>
 
 </body>
 </html>

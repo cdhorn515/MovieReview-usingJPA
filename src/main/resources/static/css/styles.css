@@ -1,0 +1,15 @@
+body{
+    background-color: orange;
+}
+
+.age{
+    margin-left: 5px;
+}
+
+.agelabel{
+    display: inline-block;
+    padding-right: 25px;
+}
+.gender{
+    padding: 0;
+}
