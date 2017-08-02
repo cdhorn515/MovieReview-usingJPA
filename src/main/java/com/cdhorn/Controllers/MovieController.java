@@ -28,7 +28,7 @@ public class MovieController {
         return "index";
     }
 
-    @RequestMapping("/movie/{movieId}")
+    @RequestMapping(value = "/movie/{movieId}", method = RequestMethod.GET)
     public String movieDetail(@PathVariable("movieId") long movieId, Model model ) {
         Movie movie = movieRepo.findOne(movieId);
         model.addAttribute("movie", movie);
@@ -48,6 +48,13 @@ public class MovieController {
         return "redirect:/movie/" + movieId;
     }
 
+//    @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.GET)
+//    public String seeReviews(@PathVariable("movieId") long movieId, Model model) {
+//        Movie movie = movieRepo.findOne(movieId);
+//        model.addAttribute(movie);
+//        return "reviews";
+//    }
+
     @RequestMapping(value = "/addMovie", method = RequestMethod.GET)
     public String addMovieLandingPage() {
         return "addMovie";
@@ -57,7 +64,7 @@ public class MovieController {
     public String addMovie(@RequestParam("title") String title,
                            @RequestParam("genre") String genre,
                            @RequestParam("imdblink") String imdblink,
-                           @RequestParam("releasedate") String releasedate) throws Exception {
+                           @RequestParam("releasedate") String releasedate) {
 
 //        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
         Movie movie = new Movie(title, genre, imdblink, releasedate);
@@ -66,6 +73,22 @@ public class MovieController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/editMovie", method = RequestMethod.POST)
+    public String editMovie(@PathVariable("movieId") long movieId,
+                            @RequestParam("title") String title,
+                            @RequestParam("genre") String genre,
+                            @RequestParam("imdblink") String imdblink,
+                            @RequestParam("releasedate") String releasedate,
+                            Model model) {
+        Movie movie = movieRepo.findOne(movieId);
+        movie.setTitle(title);
+        movie.setGenre(genre);
+        movie.setImdblink(imdblink);
+        movie.setReleasedate(releasedate);
+        movieRepo.save(movie);
+        model.addAttribute(movie);
+        return "edit";
+    }
 
 }
 

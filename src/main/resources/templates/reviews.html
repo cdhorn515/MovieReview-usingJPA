@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Reviews</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
+
+</head>
+<body class="container">
+<h1>Should see all reviews on this page</h1>
+
+
+<div class="container-fluid">
+
+    <div class="panel panel-default" th:each="review : ${movie.reviews}">
+        <div class="panel-heading">
+            <h3 class="panel-title" th:text="${review.reviewername}"></h3>
+        </div>
+        <div class="panel-body" th:text="${review.rating}">
+        </div>
+        <div class="panel-body" th:text="${review.age}"></div>
+        <div class="panel-body" th:text="${review.gender}"></div>
+        <div class="panel-body" th:text="${review.occupation}"></div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

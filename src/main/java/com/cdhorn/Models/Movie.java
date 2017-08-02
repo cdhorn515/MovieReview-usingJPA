@@ -1,6 +1,7 @@
 package com.cdhorn.Models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "movie")
@@ -12,6 +13,9 @@ public class Movie {
     private String genre;
     private String imdblink;
     private String releasedate;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
     public Movie() {}
 
@@ -60,5 +64,13 @@ public class Movie {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

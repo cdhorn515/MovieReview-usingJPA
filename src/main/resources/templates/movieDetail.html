@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Detail page</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
 </head>
 <body class="container">
 
@@ -25,16 +26,11 @@
             </div>
             <div class="panel-body">
                 <div th:text="${movie.imdblink}"></div>
-                <a th:href="'movie/' + @{${movie.id}}">Write a review</a>
+                <a th:href="'movie/' + @{${movie.id}} + '/addReview'">Write a review</a>
             </div>
-
         </div>
-
     </div>
 </div>
-
-
-
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -44,9 +40,17 @@
         <div th:text="${movie.genre}"></div>
         <div th:text="${movie.releasedate}"></div>
         <a th:href="@{${movie.imdblink}}">Imdb link</a>
+    </div>
+        <div class="panel-body" >
+            <!--<div th:text="${movie.imdblink}"></div>-->
+            <a th:href="'/edit/' + @{${movie.id}}">Edit movie information</a>
+        </div>
+
 
         <!--<div th:text="${movie.imdblink}"></div>-->
 
+        <div class="panel panel-default">
+            <div class="panel-heading">
 
         <form class="form-horizontal" method="post" th:action="'/movie/' + ${movie.id} + '/addReview'">
             <div class="form-group">
@@ -92,6 +96,23 @@
 
         </form>
     </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="panel panel-default" th:each="review : ${movie.reviews}">
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="${review.reviewername}"></h3>
+            </div>
+            <div class="panel-body" th:text="${review.rating}">
+            </div>
+            <div class="panel-body" th:text="${review.age}"></div>
+            <div class="panel-body" th:text="${review.gender}"></div>
+            <div class="panel-body" th:text="${review.occupation}"></div>
+        </div>
+    </div>
+
 
     <!--<div class="container-fluid">-->
 
@@ -104,6 +125,6 @@
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
-</div>
+
 </body>
 </html>
