@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @Controller
 public class MovieController {
 
@@ -62,11 +59,13 @@ public class MovieController {
                            @RequestParam("imdblink") String imdblink,
                            @RequestParam("releasedate") String releasedate) throws Exception {
 
-        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
-        Movie movie = new Movie(title, genre, imdblink, formattedReleaseDate);
+//        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
+        Movie movie = new Movie(title, genre, imdblink, releasedate);
             movieRepo.save(movie);
 
         return "redirect:/";
     }
+
+
 }
 

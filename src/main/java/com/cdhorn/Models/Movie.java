@@ -1,7 +1,6 @@
 package com.cdhorn.Models;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "movie")
@@ -12,11 +11,11 @@ public class Movie {
     private String title;
     private String genre;
     private String imdblink;
-    private Date releasedate;
+    private String releasedate;
 
     public Movie() {}
 
-    public Movie(String title, String genre, String imdblink, Date releasedate) {
+    public Movie(String title, String genre, String imdblink, String releasedate) {
         this.title = title;
         this.genre = genre;
         this.imdblink = imdblink;
@@ -47,11 +46,11 @@ public class Movie {
         this.imdblink = imdbLink;
     }
 
-    public Date getReleasedate() {
+    public String getReleasedate() {
         return releasedate;
     }
 
-    public void setReleasedate(Date releasedate) {
+    public void setReleasedate(String releasedate) {
         this.releasedate = releasedate;
     }
 
