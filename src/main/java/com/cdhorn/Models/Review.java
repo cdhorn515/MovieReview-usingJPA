@@ -16,8 +16,7 @@ public class Review {
     private String occupation;
 
     @ManyToOne
-    @JoinColumn(name = "movie_title")
-
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
 

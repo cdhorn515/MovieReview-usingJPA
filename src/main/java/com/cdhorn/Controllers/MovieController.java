@@ -47,5 +47,10 @@ public class MovieController {
         reviewRepo.save(newReview);
         return "redirect:/movie/" + movieId;
     }
+
+    @RequestMapping( value = "/addMovie", method = RequestMethod.GET)
+    public String addMovie() {
+        return "addMovie";
+    }
 }
 
