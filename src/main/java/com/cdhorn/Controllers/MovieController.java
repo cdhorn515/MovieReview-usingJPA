@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -62,20 +60,11 @@ public class MovieController {
     public String addMovie(@RequestParam("title") String title,
                            @RequestParam("genre") String genre,
                            @RequestParam("imdblink") String imdblink,
-                           @RequestParam("releasedate") String releasedate) {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-        Date releaseDateFormatted = new Date();
-        try {
-            releaseDateFormatted = df.parse(releasedate);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-        }
-        Movie movie = new Movie(title, genre, imdblink, releaseDateFormatted);
-        movieRepo.save(movie);
+                           @RequestParam("releasedate") String releasedate) throws Exception {
 
-
+        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
+        Movie movie = new Movie(title, genre, imdblink, formattedReleaseDate);
+            movieRepo.save(movie);
 
         return "redirect:/";
     }
