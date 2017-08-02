@@ -35,7 +35,14 @@ public class MovieController {
         return "movieDetail";
     }
 
-    @RequestMapping(value = "/movie/{movieId}/addReview", method = RequestMethod.POST)
+    @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.GET)
+    public String getReviews(@PathVariable("movieId") long movieId, Model model) {
+        Movie movie = movieRepo.findOne(movieId);
+        model.addAttribute("movie", movie);
+        return "reviews";
+    }
+
+    @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.POST)
     public String addReview(@PathVariable("movieId") long movieId,
                             @RequestParam("reviewername") String reviewername,
                             @RequestParam("rating") String rating,
@@ -45,7 +52,7 @@ public class MovieController {
         Movie movie = movieRepo.findOne(movieId);
         Review newReview = new Review(reviewername, rating, age, gender, occupation, movie);
         reviewRepo.save(newReview);
-        return "redirect:/movie/" + movieId;
+        return "redirect:/movie/" + movieId + "/reviews";
     }
 
 //    @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.GET)
