@@ -23,6 +23,15 @@ public class Review {
 
     public Review() {}
 
+    public Review(String reviewername, String rating, int age, char gender, String occupation, Movie movie) {
+        this.reviewername = reviewername;
+        this.rating = rating;
+        this.age = age;
+        this.gender = gender;
+        this.occupation = occupation;
+        this.movie = movie;
+    }
+
     public long getId() {
         return id;
     }

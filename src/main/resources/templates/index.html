@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org"/>
+    <meta charset="UTF-8" />
     <title>Movie review home</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
 </head>
@@ -12,7 +12,7 @@
 
 <div class="row">
 
-    <div class="col-md-4" th:each="movie : ${movie}">
+    <div class="col-md-4" th:each="movie : ${movies}">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title" th:text="${movie.title}"></h3>
@@ -24,13 +24,16 @@
                 <div th:text="${movie.releasedate}"></div>
             </div>
             <div class="panel-body">
-                <div th:text="${movie.imdblink}"></div>
+                <a th:href="@{${movie.imdblink}}">Imdb link</a>
+            </div>
+            <div class="panel-body" >
+                <!--<div th:text="${movie.imdblink}"></div>-->
                 <a th:href="'movie/' + @{${movie.id}}">Write a review</a>
             </div>
 
         </div>
 
     </div>
-
+</div>
 </body>
 </html>

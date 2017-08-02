@@ -1,7 +1,7 @@
 package com.cdhorn.Models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "movie")
@@ -12,7 +12,7 @@ public class Movie {
     private String title;
     private String genre;
     private String imdblink;
-    private LocalDate releasedate;
+    private Date releasedate;
 
     public Movie() {}
 
@@ -40,11 +40,11 @@ public class Movie {
         this.imdblink = imdbLink;
     }
 
-    public LocalDate getReleasedate() {
+    public Date getReleasedate() {
         return releasedate;
     }
 
-    public void setReleasedate(LocalDate releasedate) {
+    public void setReleasedate(Date releasedate) {
         this.releasedate = releasedate;
     }
 
