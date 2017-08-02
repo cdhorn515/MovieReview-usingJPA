@@ -73,8 +73,16 @@ public class MovieController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/editMovie", method = RequestMethod.POST)
-    public String editMovie(@PathVariable("movieId") long movieId,
+    @RequestMapping(value = "/edit/{movieId}", method = RequestMethod.GET)
+    public String editLandingPage(@PathVariable("movieId") long movieId, Model model) {
+        Movie movie = movieRepo.findOne(movieId);
+        model.addAttribute("movie", movie);
+        return "edit";
+    }
+
+
+    @RequestMapping(value = "/edit/{movieId}", method = RequestMethod.POST)
+    public String edit(@PathVariable("movieId") long movieId,
                             @RequestParam("title") String title,
                             @RequestParam("genre") String genre,
                             @RequestParam("imdblink") String imdblink,
