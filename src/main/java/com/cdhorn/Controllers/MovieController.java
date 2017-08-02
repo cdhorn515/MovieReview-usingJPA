@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class MovieController {
 
@@ -48,9 +53,31 @@ public class MovieController {
         return "redirect:/movie/" + movieId;
     }
 
-    @RequestMapping( value = "/addMovie", method = RequestMethod.GET)
-    public String addMovie() {
+    @RequestMapping(value = "/addMovie", method = RequestMethod.GET)
+    public String addMovieLandingPage() {
         return "addMovie";
+    }
+
+    @RequestMapping(value = "/addMovie", method = RequestMethod.POST)
+    public String addMovie(@RequestParam("title") String title,
+                           @RequestParam("genre") String genre,
+                           @RequestParam("imdblink") String imdblink,
+                           @RequestParam("releasedate") String releasedate) {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        Date releaseDateFormatted = new Date();
+        try {
+            releaseDateFormatted = df.parse(releasedate);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        }
+        Movie movie = new Movie(title, genre, imdblink, releaseDateFormatted);
+        movieRepo.save(movie);
+
+
+
+        return "redirect:/";
     }
 }
 

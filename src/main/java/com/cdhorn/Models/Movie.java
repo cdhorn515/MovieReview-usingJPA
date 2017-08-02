@@ -16,6 +16,13 @@ public class Movie {
 
     public Movie() {}
 
+    public Movie(String title, String genre, String imdblink, Date releasedate) {
+        this.title = title;
+        this.genre = genre;
+        this.imdblink = imdblink;
+        this.releasedate = releasedate;
+    }
+
     public String getTitle() {
         return title;
     }
