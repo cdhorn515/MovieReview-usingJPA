@@ -14,8 +14,10 @@
 <div class="row">
 
     <div class="col-md-4" th:each="movie : ${movies}">
-        <div class="panel panel-default">
+        <div class="panel panel-default all_movies">
             <div class="panel-heading">
+                <!--this was suggested on so but isn't working-->
+                <!--<h3 class="panel-title" th:text="${#dates.format(movie.title), 'dd-MM-yyyy'}"></h3>-->
                 <h3 class="panel-title" th:text="${movie.title}"></h3>
             </div>
             <div class="panel-body">
@@ -28,8 +30,7 @@
                 <a th:href="@{${movie.imdblink}}">Imdb link</a>
             </div>
             <div class="panel-body" >
-                <!--<div th:text="${movie.imdblink}"></div>-->
-                <a th:href="'movie/' + @{${movie.id}} + '/reviews'">Movie reviews</a>
+                <a th:href="'movie/' + @{${movie.id}} + '/reviews'">See reviews</a>
             </div>
 
 
