@@ -1,6 +1,7 @@
 package com.cdhorn.Models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,14 +13,14 @@ public class Movie {
     private String title;
     private String genre;
     private String imdblink;
-    private String releasedate;
+    private Date releasedate;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
     public Movie() {}
 
-    public Movie(String title, String genre, String imdblink, String releasedate) {
+    public Movie(String title, String genre, String imdblink, Date releasedate) {
         this.title = title;
         this.genre = genre;
         this.imdblink = imdblink;
@@ -50,11 +51,11 @@ public class Movie {
         this.imdblink = imdbLink;
     }
 
-    public String getReleasedate() {
+    public Date getReleasedate() {
         return releasedate;
     }
 
-    public void setReleasedate(String releasedate) {
+    public void setReleasedate(Date releasedate) {
         this.releasedate = releasedate;
     }
 

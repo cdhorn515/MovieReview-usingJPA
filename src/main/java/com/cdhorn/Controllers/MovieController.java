@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class MovieController {
 
@@ -38,6 +41,8 @@ public class MovieController {
     @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.GET)
     public String getReviews(@PathVariable("movieId") long movieId, Model model) {
         Movie movie = movieRepo.findOne(movieId);
+        System.out.println(movie.getReleasedate());
+//        1977-05-25 00:00:00.0 is returned, yr, mth, date stored in db
         model.addAttribute("movie", movie);
         return "reviews";
     }
@@ -71,10 +76,12 @@ public class MovieController {
     public String addMovie(@RequestParam("title") String title,
                            @RequestParam("genre") String genre,
                            @RequestParam("imdblink") String imdblink,
-                           @RequestParam("releasedate") String releasedate) {
+                           @RequestParam("releasedate") String releasedate) throws Exception {
 
-//        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
-        Movie movie = new Movie(title, genre, imdblink, releasedate);
+        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
+        Movie movie = new Movie(title, genre, imdblink, formattedReleaseDate);
+        System.out.println("FORMATTED" + formattedReleaseDate);
+//        returns FORMATTEDWed Jun 07 00:00:00 EDT 2017
             movieRepo.save(movie);
 
         return "redirect:/";
@@ -94,12 +101,13 @@ public class MovieController {
                             @RequestParam("genre") String genre,
                             @RequestParam("imdblink") String imdblink,
                             @RequestParam("releasedate") String releasedate,
-                            Model model) {
+                            Model model) throws Exception{
         Movie movie = movieRepo.findOne(movieId);
         movie.setTitle(title);
         movie.setGenre(genre);
         movie.setImdblink(imdblink);
-        movie.setReleasedate(releasedate);
+        Date formattedReleaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(releasedate);
+        movie.setReleasedate(formattedReleaseDate);
         movieRepo.save(movie);
         model.addAttribute(movie);
         return "edit";

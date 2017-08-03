@@ -1,5 +1,5 @@
 body{
-    background-color: orange;
+    background-color: lightcoral;
 }
 
 .rating-box{
@@ -7,7 +7,7 @@ body{
 }
 
 .ageinput{
-    margin-left: 5px;
+    margin-left: 15px;
 }
 
 .agelabel{
@@ -15,5 +15,17 @@ body{
     padding-right: 25px;
 }
 .gender{
-    padding: 0;
+    margin-top: -8px!important;
+}
+
+/*.genderlabel{*/
+    /*padding-right: 10px;*/
+/*}*/
+
+/*---------------navbar--------------*/
+
+/*---------------index---------------*/
+
+.all_movies{
+    height: 260px;
 }
