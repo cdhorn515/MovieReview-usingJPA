@@ -60,12 +60,6 @@ public class MovieController {
         return "redirect:/movie/" + movieId + "/reviews";
     }
 
-//    @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.GET)
-//    public String seeReviews(@PathVariable("movieId") long movieId, Model model) {
-//        Movie movie = movieRepo.findOne(movieId);
-//        model.addAttribute(movie);
-//        return "reviews";
-//    }
 
     @RequestMapping(value = "/addMovie", method = RequestMethod.GET)
     public String addMovieLandingPage() {
