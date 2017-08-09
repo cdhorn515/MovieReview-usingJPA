@@ -53,4 +53,13 @@ public class ReviewController {
         return "redirect:/movie/" + movieId + "/reviews";
     }
 
+    @RequestMapping(value = "/movie/myReviews")
+    public String myReviews(Model model, Principal principal) {
+        User user = userRepo.findByUsername(principal.getName());
+        Iterable<Review> reviews = reviewRepo.findAllByUser(user);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
+        return "myReviews";
+    }
+
 }

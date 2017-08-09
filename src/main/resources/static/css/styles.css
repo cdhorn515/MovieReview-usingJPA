@@ -1,6 +1,10 @@
 body{
     background-color: lightcoral;
 }
+.myReviews{
+    background-color: lightcoral;
+
+}
 
 .rating-box{
     text-align: left!important;
@@ -18,9 +22,13 @@ body{
     margin-top: -8px!important;
 }
 
-/*.genderlabel{*/
-    /*padding-right: 10px;*/
-/*}*/
+.movie-info{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.genre{
+    padding-top: 15px;
+}
 
 /*---------------navbar--------------*/
 

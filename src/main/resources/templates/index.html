@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Movie review home</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <div th:include="navbar :: navbar"></div>
@@ -18,19 +18,24 @@
                 <div class="panel-heading">
                     <h3 class="panel-title" th:text="${movie.title}"></h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body movie-info genre">
                     <div th:text="${movie.genre}"></div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body movie-info">
 
                     <div th:text="${movie.releasedate}"></div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body movie-info">
                     <a th:href="@{${movie.imdblink}}">Imdb link</a>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body movie-info">
                     <a th:href="'movie/' + @{${movie.id}} + '/reviews'">See reviews</a>
                 </div>
+                <div class="panel-body movie-info" >
+                    <!--<div th:text="${movie.imdblink}"></div>-->
+                    <a th:href="'/edit/' + @{${movie.id}}">Edit movie information</a>
+                </div>
+
             </div>
         </div>
     </div>
