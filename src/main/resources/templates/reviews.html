@@ -9,96 +9,96 @@
 </head>
 <body>
 
-<div th:include="navbar :: navbar"> </div>
+<div th:include="navbar :: navbar"></div>
 <div class="container">
 
-<h1 th:text="${movie.title}"></h1>
+    <h1 th:text="${movie.title}"></h1>
 
     <h3>What people are saying about this movie:</h3>
-
-    <div class="container-fluid">
+    <div class="container-fluid" th:each="review : ${movie.reviews}">
         <div class="row">
-            <div class="col-md-4" th:each="review : ${movie.reviews}">
+            <div class="col-md-4">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title" th:text="${review.reviewername}"></h3>
-            </div>
-            <div class="panel-body" th:text="${review.rating}">
-            </div>
-            <div class="panel-body" th:text="${review.age}"></div>
-            <div class="panel-body" th:text="${review.gender}"></div>
-            <div class="panel-body" th:text="${review.occupation}"></div>
-        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" th:text="${review.user.username}"></h3>
+                    </div>
+                    <div class="panel-body" th:text="${review.rating}">
+                    </div>
+                    <div class="panel-body" th:text="${review.user.age}"></div>
+                    <div class="panel-body" th:text="${review.user.gender}"></div>
+                    <div class="panel-body" th:text="${review.user.occupation}"></div>
+                </div>
             </div>
         </div>
     </div>
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-    <h3>Add your own review:</h3>
-        <form class="form-horizontal" method="post" th:action="'/movie/' + ${movie.id} + '/reviews'">
-            <div class="form-group">
-                <label for="reviewername" class="col-sm-2 control-label">Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="reviewername" class="form-control" id="reviewername"/>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Add your own review:</h3>
+            <form class="form-horizontal" method="post" th:action="'/movie/' + ${movie.id} + '/reviews'">
+                <div class="form-group">
+                    <input type="hidden" name="reviewername" class="form-control" id="reviewername"
+                           th:value="${username}"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="rating" class="col-sm-2 control-label">Review:</label>
-                <div class="col-sm-10">
 
-                <textarea class="form-control col-sm-2 control-label rating-box" name="rating" id="rating" rows="3"></textarea>
-                </div>
-            </div>
-            <h4>Would you provide additional information so we can continue to make movies for you to enjoy?</h4>
+                <div class="form-group">
+                    <label for="rating" class="col-sm-2 control-label">Review:</label>
+                    <div class="col-sm-10">
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group form-inline age">
-                        <label for="age" class="col-sm-4 control-label agelabel">Age:</label>
-                        <div class="form-inline">
-                            <input type="text" name="age" class="form-control ageinput" id="age"/>
-                        </div>
+                <textarea class="form-control col-sm-2 control-label rating-box" name="rating" id="rating"
+                          rows="3"></textarea>
                     </div>
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="radio-inline gender">
-                            <label class="col-sm-2 control-label">
-                                <input type="radio" name="gender" id="male" value="M"/>
-                                Male
-                            </label>
-                        </div>
-                        <div class="radio-inline gender">
-                            <label class="col-sm-2 control-label">
-                                <input type="radio" name="gender" id="female" value="F"/>
-                                Female
-                            </label>
-                        </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="form-group">
-                <label for="occupation" class="col-sm-2 control-label">Occupation:</label>
-                <div class="col-sm-6">
-                    <input type="text" name="occupation" class="form-control" id="occupation"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
+    <!--this information should be asked on sign up page-->
+    <!--<h4>Would you provide additional information so we can continue to make movies for you to enjoy?</h4>-->
+
+    <!--<div class="row">-->
+    <!--<div class="col-sm-6">-->
+    <!--<div class="form-group form-inline age">-->
+    <!--<label for="age" class="col-sm-4 control-label agelabel">Age:</label>-->
+    <!--<div class="form-inline">-->
+    <!--<input type="text" name="age" class="form-control ageinput" id="age"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-sm-6">-->
+    <!--<div class="form-group">-->
+    <!--<div class="radio-inline gender">-->
+    <!--<label class="col-sm-2 control-label">-->
+    <!--<input type="radio" name="gender" id="male" value="M"/>-->
+    <!--Male-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--<div class="radio-inline gender">-->
+    <!--<label class="col-sm-2 control-label">-->
+    <!--<input type="radio" name="gender" id="female" value="F"/>-->
+    <!--Female-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="form-group">-->
+    <!--<label for="occupation" class="col-sm-2 control-label">Occupation:</label>-->
+    <!--<div class="col-sm-6">-->
+    <!--<input type="text" name="occupation" class="form-control" id="occupation"/>-->
+    <!--</div>-->
+    <!--</div>-->
 
 
 </div>

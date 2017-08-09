@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Movie review home</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{css/styles.css}"/>
 </head>
 <body>
-<div th:include="navbar :: navbar"> </div>
+<div th:include="navbar :: navbar"></div>
 <div class="container">
-<h1>Movies in review:</h1>
+    <h1>Movies in review:</h1>
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-md-4" th:each="movie : ${movies}">
-        <div class="panel panel-default all_movies">
-            <div class="panel-heading">
-                <h3 class="panel-title" th:text="${movie.title}"></h3>
-            </div>
-            <div class="panel-body">
-                <div th:text="${movie.genre}"></div>
-            </div>
-            <div class="panel-body">
+        <div class="col-md-4" th:each="movie : ${movies}">
+            <div class="panel panel-default all_movies">
+                <div class="panel-heading">
+                    <h3 class="panel-title" th:text="${movie.title}"></h3>
+                </div>
+                <div class="panel-body">
+                    <div th:text="${movie.genre}"></div>
+                </div>
+                <div class="panel-body">
 
-                <div th:text="${movie.releasedate}"></div>
+                    <div th:text="${movie.releasedate}"></div>
+                </div>
+                <div class="panel-body">
+                    <a th:href="@{${movie.imdblink}}">Imdb link</a>
+                </div>
+                <div class="panel-body">
+                    <a th:href="'movie/' + @{${movie.id}} + '/reviews'">See reviews</a>
+                </div>
             </div>
-            <div class="panel-body">
-                <a th:href="@{${movie.imdblink}}">Imdb link</a>
-            </div>
-            <div class="panel-body" >
-                <a th:href="'movie/' + @{${movie.id}} + '/reviews'">See reviews</a>
-            </div>
-
-
         </div>
-
     </div>
+    <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout"/>
+    </form>
 
-</div>
 </div>
 </body>
 </html>
