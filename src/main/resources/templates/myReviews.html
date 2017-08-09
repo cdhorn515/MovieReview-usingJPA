@@ -12,11 +12,11 @@
 
     <h1 th:inline="text">[[${user.username}]]'s reviews:</h1>
 
-    <div class="container-fluid" th:each="review : ${reviews}">
+    <div class="container-fluid" >
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" th:each="review : ${reviews}">
 
-                <div class="panel panel-default">
+                <div class="panel panel-default all_movies">
                     <div class="panel-heading">
                         <h3 class="panel-title" th:text="${review.movie.title}"></h3>
                     </div>

@@ -28,21 +28,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                    .anyRequest().hasRole("USER")
+//                    .and()
+//                .formLogin()
+//                    .loginPage("/login")
+//                    .successHandler(loginSuccessHandler())
+//                    .failureHandler(loginFailureHandler())
+//                    .and()
+//                .logout()
+//                .permitAll()
+//                .logoutSuccessUrl("/login");
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .anyRequest().hasRole("USER")
-                    .and()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/edit/**").hasRole("USER")
+                    .antMatchers("/addMovie/**").hasRole("USER")
+                    .antMatchers("/edit/**").hasRole("USER")
+                .and()
                 .formLogin()
                     .loginPage("/login")
                     .successHandler(loginSuccessHandler())
                     .failureHandler(loginFailureHandler())
                     .and()
                 .logout()
-                .permitAll()
-                .logoutSuccessUrl("/login");
+                    .permitAll()
+                    .logoutSuccessUrl("/login");
     }
+
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
         return (request, response, authentication) -> response.sendRedirect("/");

@@ -32,10 +32,26 @@ public class ReviewController {
     public String getReviews(@PathVariable("movieId") long movieId, Model model,
                              Principal principal) {
         Movie movie = movieRepo.findOne(movieId);
-        String username = principal.getName();
-        model.addAttribute("username", username);
+        try {
+            String username = principal.getName();
+            model.addAttribute("username", username);
+        } catch (Exception ex) {}
         model.addAttribute("movie", movie);
         return "reviews";
+    }
+
+    @RequestMapping(value = "/addReview/{movieId}", method = RequestMethod.GET)
+    public String addReview(@PathVariable("movieId") long movieId, Model model,
+                            Principal principal) {
+        Movie movie = movieRepo.findOne(movieId);
+        try {
+            String username = principal.getName();
+            model.addAttribute("username", username);
+        } catch (Exception ex) {
+            return "redirect:/login";
+        }
+        model.addAttribute("movie", movie);
+        return "addReview";
     }
 
     @RequestMapping(value = "/movie/{movieId}/reviews", method = RequestMethod.POST)
@@ -55,10 +71,15 @@ public class ReviewController {
 
     @RequestMapping(value = "/movie/myReviews")
     public String myReviews(Model model, Principal principal) {
-        User user = userRepo.findByUsername(principal.getName());
-        Iterable<Review> reviews = reviewRepo.findAllByUser(user);
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("user", user);
+        try {
+            User user = userRepo.findByUsername(principal.getName());
+            Iterable<Review> reviews = reviewRepo.findAllByUser(user);
+            model.addAttribute("reviews", reviews);
+            model.addAttribute("user", user);
+
+        } catch (Exception ex) {
+            return "redirect:/login";
+        }
         return "myReviews";
     }
 

@@ -34,6 +34,6 @@ body{
 
 /*---------------index---------------*/
 
-.all_movies{
+.all_movies, all_reviews{
     height: 260px;
 }

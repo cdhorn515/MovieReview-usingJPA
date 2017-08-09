@@ -32,21 +32,24 @@ public class MovieController {
 
     @RequestMapping("/")
     public String index(Model model, Principal principal) {
-        String username = principal.getName();
-        User user = userRepo.findByUsername(username);
-        Iterable<Review> reviews = reviewRepo.findAllByUser(user);
+        try {
+            String username = principal.getName();
+            User user = userRepo.findByUsername(username);
+            Iterable<Review> reviews = reviewRepo.findAllByUser(user);
+            model.addAttribute("reviews", reviews);
+
+        } catch (Exception ex) {}
         Iterable<Movie> movies = movieRepo.findAll();
         model.addAttribute("movies", movies);
-        model.addAttribute("reviews", reviews);
         return "index";
     }
 
-    @RequestMapping(value = "/movie/{movieId}", method = RequestMethod.GET)
-    public String movieDetail(@PathVariable("movieId") long movieId, Model model ) {
-        Movie movie = movieRepo.findOne(movieId);
-        model.addAttribute("movie", movie);
-        return "movieDetail";
-    }
+//    @RequestMapping(value = "/movie/{movieId}", method = RequestMethod.GET)
+//    public String movieDetail(@PathVariable("movieId") long movieId, Model model ) {
+//        Movie movie = movieRepo.findOne(movieId);
+//        model.addAttribute("movie", movie);
+//        return "movieDetail";
+//    }
 
     @RequestMapping(value = "/addMovie", method = RequestMethod.GET)
     public String addMovieLandingPage() {
@@ -92,15 +95,6 @@ public class MovieController {
         model.addAttribute(movie);
         return "edit";
     }
-
-    /*
-    use for endpoints for my reviews
-            User user = userRepo.findByUsername(principal.getName());
-        Iterable<Secret> secrets = secretRepo.findAllByUser(user);
-        model.addAttribute("secrets", secrets);
-        model.addAttribute("user", user);
-
-     */
 
 }
 
