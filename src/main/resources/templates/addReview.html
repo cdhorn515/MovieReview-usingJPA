@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<form th:action="@{/logout}" method="post">
+<form th:if="${not username.isEmpty()}" th:action="@{/logout}" method="post">
     <input type="submit" value="Logout"/>
 </form>
 </div>

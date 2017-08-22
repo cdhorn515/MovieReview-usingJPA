@@ -28,21 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                    .anyRequest().hasRole("USER")
-//                    .and()
-//                .formLogin()
-//                    .loginPage("/login")
-//                    .successHandler(loginSuccessHandler())
-//                    .failureHandler(loginFailureHandler())
-//                    .and()
-//                .logout()
-//                .permitAll()
-//                .logoutSuccessUrl("/login");
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
