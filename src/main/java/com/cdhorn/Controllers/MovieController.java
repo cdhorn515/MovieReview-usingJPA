@@ -70,7 +70,6 @@ public class MovieController {
         return "edit";
     }
 
-
     @RequestMapping(value = "/edit/{movieId}", method = RequestMethod.POST)
     public String edit(@PathVariable("movieId") long movieId,
                             @RequestParam("title") String title,
@@ -88,6 +87,5 @@ public class MovieController {
         model.addAttribute(movie);
         return "edit";
     }
-
 }
 

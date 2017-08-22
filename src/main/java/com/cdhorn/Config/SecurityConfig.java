@@ -28,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -47,7 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .logoutSuccessUrl("/login");
     }
-
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
         return (request, response, authentication) -> response.sendRedirect("/");
